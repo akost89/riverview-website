@@ -25,6 +25,22 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+
+<script>
+  // Global tracking helper
+  window.trackEvent = async (eventName, data = {}) => {
+    try {
+      await fetch('/api/track', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ event: eventName, ...data }),
+      });
+    } catch (err) {
+      console.error('Tracking failed:', err);
+    }
+  };
+</script>
+
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
